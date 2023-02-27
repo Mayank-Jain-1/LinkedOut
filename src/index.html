@@ -11,24 +11,24 @@
   </head>
 
   <body>
-    <div class="bg-1"></div>
-    <div class="bg-2"></div>
+    <div class="w-screen h-screen -z-40 -left-1/2 fixed bg-primary skew-x-[10deg] "></div>
+    <div class="w-screen h-screen -z-50 fixed bg-faded"></div>
 
     <div class="flex justify-center items-center py-16 px-5 md:px-10">
       <div
-        class="flex w-full max-w-[800px] bg-white rounded-2xl overflow-hidden relative space-x-12"
+        class="flex w-full max-w-[800px] bg-white rounded-2xl overflow-hidden relative "
       >
-        <img src="./Images/buildings.png" alt="" class="w-1/3 hidden md:block" />
+        <img src="./Images/buildings.png" alt="" class="w-1/3 hidden sm:block" />
 
-        <form class="flex flex-col justify-center space-y-2">
-          <h1 class="text-3xl text-primary font-semibold">Welcome</h1>
-          <input type="text" class="bg-faded py-2 px-4 text-sm w-72 my-1 rounded-sm"
+        <form class="flex flex-col justify-center w-full py-16 px-10 md:px-16">
+          <h1 class="text-5xl text-primary font-semibold mb-6">Welcome</h1>
+          <input type="text" class="bg-faded py-2 px-4 text-sm w-full mb-3 rounded-sm max-w-md"
           placeholder="Email"/>
-          <input type="text" class="bg-faded py-2 px-4 text-sm w-72 my-1 rounded-sm"
+          <input type="text" class="bg-faded py-2 px-4 text-sm w-full mb-6 rounded-sm max-w-md"
           placeholder="Password"/>
           <div class="space-x-3">
-            <button class="py-3 border w-24">Login</button>
-            <button class="py-3 border w-24">Sign Up</button>
+            <button class="py-3 text-white bg-primary w-24">Login</button>
+            <button class="py-3 border-2 border-primary text-primary font-semibold w-24">Sign Up</button>
           </div>
         </form>
         <div class="absolute"></div>
