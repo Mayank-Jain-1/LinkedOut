@@ -49,14 +49,16 @@ function register()
       return;
     }
   } catch (Exception $err) {
-    $error = (mysqli_error($conn));
     $message = "<p class='text-red-600'>There is some error, check your data or try later.</p>";
+  } finally {
+    $conn->close();
   }
 }
 
 if (isset($_POST['submit'])) {
   register();
 }
+
 ?>
 
 
@@ -91,11 +93,13 @@ if (isset($_POST['submit'])) {
         ?>
 
         <div class="space-x-3 mt-5">
-          <button name='submit' type='submit' class="py-3 text-white bg-primary w-24">Login</button>
+          <button name='submit' type='submit' class="py-3 text-white bg-primary w-24">Register</button>
 
-          <button class="py-3 border-2 border-primary text-primary font-semibold w-24">
-            Sign Up
-          </button>
+          <a href='./login.php' class="inline-flex justify-center py-3 border-2 border-primary text-primary font-semibold w-24">
+            <p>
+              Login
+            </p>
+          </a>
         </div>
       </form>
       <div class="absolute"></div>
