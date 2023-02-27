@@ -22,7 +22,7 @@ function register()
     $confirmpassword = $_POST['confirmpassword'];
     $phone = $_POST['phone'];
 
-    if(!$name || !$email || !$password || $confirmpassword){
+    if(!$name || !$email || !$password || !$confirmpassword){
       $message = "<p class='text-red-600'>Fill out every field.</p>";
       return;
     }

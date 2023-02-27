@@ -1,9 +1,40 @@
 <?php
-$message = "";
+$message = "<p class='text-white'>.</p>";
+function login()
+{
+  try {
+    global $message;
+    $server = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "linkedout";
+
+    $conn = mysqli_connect($server, $username, $password, $database);
+
+    if ($conn->connect_error) {
+      die("Connection Failed: " . $conn->connect_error);
+    }
+
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $searchSql = "Select * from `linkedout`.`users` where email = '$email' and password = '$password'";
+    $result = mysqli_query($conn, $searchSql);
+    if (mysqli_num_rows($result) != 1) {
+      $message = "<p class='text-red-600'>Either username or password incorrect</p>";
+      return;
+    }
+    $message = "lessgo";
+
+
+  } catch (Exception $err) {
+    $message = "<p class='text-red-600'>There is some error, check the fields or try again later</p>";
+  } finally {
+    $conn->close();
+  }
+}
 if (isset($_POST['submit'])) {
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $message = "<p> Insert email = $email , password = $password </p>";
+  login();
 }
 ?>
 
@@ -30,11 +61,11 @@ if (isset($_POST['submit'])) {
       <form action='login.php' method="post" class="flex flex-col justify-center w-full py-16 px-10 md:px-16">
         <h1 class="text-5xl text-primary font-semibold mb-6">Welcome</h1>
         <input name="email" type="text" class="bg-faded py-2 px-4 text-sm w-full mb-3 rounded-sm max-w-md" placeholder="Email" />
-        <input name="password" type="text" class="bg-faded py-2 px-4 text-sm w-full mb-6 rounded-sm max-w-md" placeholder="Password" />
+        <input name="password" type="text" class="bg-faded py-2 px-4 text-sm w-full mb-1 rounded-sm max-w-md" placeholder="Password" />
         <?php
-        echo "<p>$message</p>";
+        echo $message;
         ?>
-        <div class="space-x-3">
+        <div class="space-x-3 mt-4">
           <button name='submit' type='submit' class="py-3 text-white bg-primary w-24">Login</button>
           <button class="py-3 border-2 border-primary text-primary font-semibold w-24">
             Sign Up
