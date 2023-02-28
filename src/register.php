@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
 
   <div class="flex justify-center items-center py-16 px-5 md:px-10">
     <div class="flex w-full max-w-[800px] bg-white rounded-2xl overflow-hidden relative">
-      <img src="./Images/buildings.png" alt="" class="w-1/3 hidden sm:block" />
+      <img src="./Images/buildings.png" alt="" class="w-1/3 hidden sm:block " />
 
       <form action='register.php' method="post" class="flex flex-col justify-center w-full py-16 px-10 md:px-16">
         <h1 class="text-5xl text-primary font-semibold mb-6">Welcome</h1>

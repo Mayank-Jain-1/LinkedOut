@@ -24,8 +24,14 @@ function login()
       $message = "<p class='text-red-600'>Either username or password incorrect</p>";
       return;
     }
-    $message = "lessgo";
+    $result = mysqli_fetch_array($result);
+    session_start();
+    $_SESSION['id'] = $result['id'];
+    $_SESSION['email'] = $result['email'];
+    $_SESSION['name'] = $result['name'];
+    $_SESSION['phone'] = $result['phone'];
 
+    header("Location: admin.php");
 
   } catch (Exception $err) {
     $message = "<p class='text-red-600'>There is some error, check the fields or try again later</p>";
@@ -65,11 +71,14 @@ if (isset($_POST['submit'])) {
         <?php
         echo $message;
         ?>
+
         <div class="space-x-3 mt-4">
           <button name='submit' type='submit' class="py-3 text-white bg-primary w-24">Login</button>
-          <button class="py-3 border-2 border-primary text-primary font-semibold w-24">
-            Sign Up
-          </button>
+          <a href='./register.php' class="inline-flex justify-center py-3 border-2 border-primary text-primary font-semibold w-24">
+            <p>
+              Sign Up
+            </p>
+          </a>
         </div>
       </form>
       <div class="absolute"></div>
