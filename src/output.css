@@ -830,10 +830,6 @@ video {
   font-weight: 600;
 }
 
-.font-bold {
-  font-weight: 700;
-}
-
 .text-blue-400 {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
@@ -889,9 +885,9 @@ tr td:first-child:before
   /* Display the counter */
 }
 
-.before\:font-extrabold::before {
-  content: var(--tw-content);
-  font-weight: 800;
+.hover\:bg-faded:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(224 219 233 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 640px) {

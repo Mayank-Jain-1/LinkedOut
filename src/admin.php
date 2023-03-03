@@ -127,9 +127,9 @@ if (isset($_POST['postJob']))
   <div class="flex flex-col md:flex-row">
     <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
       <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Jobs</a>
-      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer">Candidates Applied</a>
-      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer">Contact</a>
-      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer">About</a>
+      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Candidates Applied</a>
+      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Contact</a>
+      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
     <div class="p-5 md:p-7 w-full">
       <button onclick="togglePostJob()" class="bg-blue-400 text-white py-2 px-4 rounded-xl">
