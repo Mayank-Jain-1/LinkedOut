@@ -117,14 +117,14 @@ if (isset($_POST['postJob']))
       </form>
     </ul>
   </nav>
-  <div class="flex flex-col sm:flex-row">
-    <ul class="sm:min-h-screen h-max sm:h-auto bg-secondary w-full sm:w-60 flex flex-col">
-      <a class="py-3 px-5 border-y inline-block sm:block text-white bg-primary">Jobs</a>
-      <a class="py-3 px-5 border-y inline-block sm:block cursor-pointer">Candidates Applied</a>
-      <a class="py-3 px-5 border-y inline-block sm:block cursor-pointer">Contact</a>
-      <a class="py-3 px-5 border-y inline-block sm:block cursor-pointer">About</a>
+  <div class="flex flex-col md:flex-row">
+    <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
+      <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Jobs</a>
+      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer">Candidates Applied</a>
+      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer">Contact</a>
+      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer">About</a>
     </ul>
-    <div class="p-5 sm:p-7 w-full">
+    <div class="p-5 md:p-7 w-full">
       <button onclick="togglePostJob()" class="bg-blue-400 text-white py-2 px-4 rounded-xl">
         Post Job
       </button>
@@ -144,25 +144,25 @@ if (isset($_POST['postJob']))
           <input type="submit" id='postJob' name='postJob' class="bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12" />
         </form>
 
-        <table class="w-full">
+        <table class="w-full my-10 border-2 border-neutral-400 ">
           <tr>
-            <th class="px-6">#</th>
-            <th class="w-1/3">Company Name</th>
-            <th class="w-1/3">Position</th>
-            <th class="w-1/3">CTC</th>
+            <th class=" px-6 bg-primary text-white border-2 py-3">#</th>
+            <th class=" w-2/5 bg-primary text-white border-2 p-3">Company Name</th>
+            <th class=" w-2/5 bg-primary text-white border-2 p-3">Position</th>
+            <th class=" w-1/5 bg-primary text-white border-2 p-3">CTC</th>
           </tr>
           <?php
-            while($row = mysqli_fetch_array($jobs)){
+          while ($row = mysqli_fetch_array($jobs)) {
             $companyName = $row['Company Name'];
             $position = $row['Position'];
             $ctc = $row['CTC'];
-            echo "<tr>
-              <td></td>
-              <td>$companyName</td=>
-              <td>$position</td>
-              <td>$ctc</td>
+            echo "<tr class='border-b-2 border-neutral-400'>
+              <td class='p-3'></td>
+              <td class='p-3'>$companyName</td=>
+              <td class='p-3'>$position</td>
+              <td class='p-3'>$ctc</td>
             </tr>";
-            }
+          }
           ?>
         </table>
       </div>

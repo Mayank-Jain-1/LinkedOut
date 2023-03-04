@@ -36,7 +36,7 @@ function login()
   } catch (Exception $err) {
     $message = "<p class='text-red-600'>There is some error, check the fields or try again later</p>";
   } finally {
-    $conn->close();
+    if(isset($conn)) $conn->close();
   }
 }
 if (isset($_POST['submit'])) {
