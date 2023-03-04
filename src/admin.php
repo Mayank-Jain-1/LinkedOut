@@ -58,10 +58,12 @@ function postJob()
       return;
     }
     $message = "<p class='text-green-600'>Successfully added new job.</p>";
+    getJobs();
   } catch (Exception $err) {
     if (str_contains($err, 'unq_job')) {
       $message = "<p class='text-red-600'>Same Job post already exist. Please check in the available jobs.</p>";
     } else {
+      echo $err;
       $message = "<p class='text-red-600'>Fill all fields correctly. Or try again later</p>";
     }
     return;
@@ -110,10 +112,15 @@ if (isset($_POST['postJob']))
     <h1 class="text-2xl font-semibold">Admin</h1>
     <ul class="flex items-center space-x-6 float-right justify-between">
       <p class="text-lg"><?php
+                          echo $_SESSION['phone'];
+                          ?>
+      </p>
+      <p class="text-lg"><?php
                           echo $_SESSION['name'];
-                          ?> </p>
+                          ?>
+      </p>
       <form action="admin.php" method="post">
-        <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2"></input>
+        <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2 cursor-pointer"></input>
       </form>
     </ul>
   </nav>
@@ -157,10 +164,10 @@ if (isset($_POST['postJob']))
             $position = $row['Position'];
             $ctc = $row['CTC'];
             echo "<tr class='border-b-2 border-neutral-400'>
-              <td class='p-3'></td>
-              <td class='p-3'>$companyName</td=>
-              <td class='p-3'>$position</td>
-              <td class='p-3'>$ctc</td>
+              <td class='text-lg py-3 px-5 font-semibold'></td>
+              <td class='py-3 px-5'>$companyName</td=>
+              <td class='py-3 px-5'>$position</td>
+              <td class='py-3 px-5'>₹ $ctc</td>
             </tr>";
           }
           ?>

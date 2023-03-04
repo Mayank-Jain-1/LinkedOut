@@ -13,17 +13,6 @@ body
     counter-reset: Serial;           /* Set the Serial counter to 0 */
 }
 
-
-/* 
-td {
-  border-bottom:2px solid silver;
-} */
-
-/* th{
-  border: 2px solid grey;
-  padding: 0.5rem 0.75rem;
-} */
-
 tr td:first-child:before
 {
   counter-increment: Serial;      /* Increment the Serial counter */
