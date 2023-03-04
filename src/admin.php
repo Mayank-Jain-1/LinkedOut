@@ -17,9 +17,7 @@ function getJobs()
 
     $sql = "SELECT * FROM `linkedout`.`jobs`";
     $jobs = mysqli_query($conn, $sql);
-
   } catch (Exception $err) {
-
   } finally {
     $conn->close();
   }
@@ -53,14 +51,19 @@ function postJob()
     $sql = "INSERT INTO `linkedout`.`jobs` (`Company Name`, `Position`, `Description`, `CTC`) VALUES ( '$name', '$position', '$description', $ctc);";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
-      $message = "<p class='text-red-600'>Error while adding new job. Please try again later.</p>";
+        $message = "<p class='text-red-600'>Error while adding new job. Please try again later.</p>";
       return;
     }
     $message = "<p class='text-green-600'>Successfully added new job.</p>";
   } catch (Exception $err) {
-    echo $err;
-    $message = "<p class='text-red-600'>Fill all fields correctly. Or try again later</p>";
-    return;
+    if (str_contains($err, 'unq_job')) {
+      echo "<script>
+          alert('Same job already exits.');
+        </script>";
+    } else {
+      $message = "<p class='text-red-600'>Fill all fields correctly. Or try again later</p>";
+    }
+    return ;
   } finally {
     $conn->close();
     $_POST = array();
