@@ -17,6 +17,9 @@ function getJobs()
 
     $sql = "SELECT * FROM `linkedout`.`jobs`";
     $jobs = mysqli_query($conn, $sql);
+    // while($row = mysqli_fetch_array($jobs)){
+    //   echo print_r($row["CTC"]);
+    // }
   } catch (Exception $err) {
   } finally {
     $conn->close();
@@ -51,19 +54,17 @@ function postJob()
     $sql = "INSERT INTO `linkedout`.`jobs` (`Company Name`, `Position`, `Description`, `CTC`) VALUES ( '$name', '$position', '$description', $ctc);";
     $result = mysqli_query($conn, $sql);
     if (!$result) {
-        $message = "<p class='text-red-600'>Error while adding new job. Please try again later.</p>";
+      $message = "<p class='text-red-600'>Error while adding new job. Please try again later.</p>";
       return;
     }
     $message = "<p class='text-green-600'>Successfully added new job.</p>";
   } catch (Exception $err) {
     if (str_contains($err, 'unq_job')) {
-      echo "<script>
-          alert('Same job already exits.');
-        </script>";
+      $message = "<p class='text-red-600'>Same Job post already exist. Please check in the available jobs.</p>";
     } else {
       $message = "<p class='text-red-600'>Fill all fields correctly. Or try again later</p>";
     }
-    return ;
+    return;
   } finally {
     $conn->close();
     $_POST = array();
@@ -72,7 +73,7 @@ function postJob()
 
 session_start();
 getJobs();
-$jobs = [];
+$jobs;
 $message = "<p class='text-faded'>.</p>";
 
 if (!isset($_SESSION['name'])) {
@@ -127,21 +128,44 @@ if (isset($_POST['postJob']))
       <button onclick="togglePostJob()" class="bg-blue-400 text-white py-2 px-4 rounded-xl">
         Post Job
       </button>
+      <div class="w-full">
+        <form method="post" id="postJobForm" class="flex flex-col space-y-3 mt-7 w-full max-w-2xl" action="">
+          <label>Company Name</label>
+          <input name="name" class="p-3 rounded-lg" type="text" />
+          <label>Position</label>
+          <input name="position" class="p-3 rounded-lg" type="text" />
+          <label>Job Description</label>
+          <textarea class="p-3 rounded-lg" class="p-3 rounded-lg" name="description" cols="30" rows="10"></textarea>
+          <label>CTC</label>
+          <input name="ctc" class="p-3 rounded-lg" type="number" />
+          <?php
+          echo $message;
+          ?>
+          <input type="submit" id='postJob' name='postJob' class="bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12" />
+        </form>
 
-      <form method="post" id="postJobForm" class="flex flex-col space-y-3 mt-7 w-full max-w-2xl" action="">
-        <label>Company Name</label>
-        <input name="name" class="p-3 rounded-lg" type="text" />
-        <label>Position</label>
-        <input name="position" class="p-3 rounded-lg" type="text" />
-        <label>Job Description</label>
-        <textarea class="p-3 rounded-lg" class="p-3 rounded-lg" name="description" cols="30" rows="10"></textarea>
-        <label>CTC</label>
-        <input name="ctc" class="p-3 rounded-lg" type="number" />
-        <?php
-        echo $message;
-        ?>
-        <input type="submit" id='postJob' name='postJob' class="bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12" />
-      </form>
+        <table class="w-full">
+          <tr>
+            <th class="px-6">#</th>
+            <th class="w-1/3">Company Name</th>
+            <th class="w-1/3">Position</th>
+            <th class="w-1/3">CTC</th>
+          </tr>
+          <?php
+            while($row = mysqli_fetch_array($jobs)){
+            $companyName = $row['Company Name'];
+            $position = $row['Position'];
+            $ctc = $row['CTC'];
+            echo "<tr>
+              <td></td>
+              <td>$companyName</td=>
+              <td>$position</td>
+              <td>$ctc</td>
+            </tr>";
+            }
+          ?>
+        </table>
+      </div>
     </div>
   </div>
 </body>
