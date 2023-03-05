@@ -51,12 +51,15 @@ function postJob()
       return;
     }
 
-    $sql = "INSERT INTO `linkedout`.`jobs` (`Company Name`, `Position`, `Description`, `CTC`) VALUES ( '$name', '$position', '$description', $ctc);";
+    $sql = "INSERT INTO `linkedout`.`jobs` (`company name`, `position`, `description`, `ctc`) VALUES ( '$name', '$position', '$description', $ctc);";
+
     $result = mysqli_query($conn, $sql);
+
     if (!$result) {
       $message = "<p class='text-red-600'>Error while adding new job. Please try again later.</p>";
       return;
     }
+
     $message = "<p class='text-green-600'>Successfully added new job.</p>";
     getJobs();
   } catch (Exception $err) {
@@ -119,7 +122,7 @@ if (isset($_POST['postJob']))
                           echo $_SESSION['name'];
                           ?>
       </p>
-      <form action="admin.php" method="post">
+      <form action="jobs.php" method="post">
         <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2 cursor-pointer"></input>
       </form>
     </ul>
@@ -127,7 +130,7 @@ if (isset($_POST['postJob']))
   <div class="flex flex-col md:flex-row">
     <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
       <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Jobs</a>
-      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Candidates Applied</a>
+      <a href="candidates.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Candidates Applied</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Contact</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
@@ -160,9 +163,9 @@ if (isset($_POST['postJob']))
           </tr>
           <?php
           while ($row = mysqli_fetch_array($jobs)) {
-            $companyName = $row['Company Name'];
-            $position = $row['Position'];
-            $ctc = $row['CTC'];
+            $companyName = $row['company name'];
+            $position = $row['position'];
+            $ctc = $row['ctc'];
             echo "<tr class='border-b-2 border-neutral-400'>
               <td class='text-lg py-3 px-5 font-semibold'></td>
               <td class='py-3 px-5'>$companyName</td=>

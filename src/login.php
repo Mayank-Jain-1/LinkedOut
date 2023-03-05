@@ -31,12 +31,11 @@ function login()
     $_SESSION['name'] = $result['name'];
     $_SESSION['phone'] = $result['phone'];
 
-    header("Location: admin.php");
-
+    header("Location: jobs.php");
   } catch (Exception $err) {
     $message = "<p class='text-red-600'>There is some error, check the fields or try again later</p>";
   } finally {
-    if(isset($conn)) $conn->close();
+    if (isset($conn)) $conn->close();
   }
 }
 if (isset($_POST['submit'])) {
