@@ -42,9 +42,10 @@ function applyJob()
 
     $jobid = $_POST['jobid'];
     $name = $_POST['name'];
+    $position = $_POST['position'];
     $passout = $_POST['passout'];
     $resume = $_POST['resume'];
-    $sql = "INSERT INTO `linkedout`.`candidates` (`job id`, `name`, `resume`, `passout`) VALUES ('$jobid', '$name', '$resume', $passout);";
+    $sql = "INSERT INTO `linkedout`.`candidates` (`job id`, `name`, `resume`, `passout`,`position`) VALUES ('$jobid', '$name', '$resume', $passout,'$position');";
 
     $result = mysqli_query($conn, $sql);
 
@@ -93,7 +94,7 @@ if (isset($_POST['apply'])) {
 
   <h1 class="text-4xl text-center font-semibold py-7 text-primary"> Find your dream job.</h1>
 
-  <div class="flex flex-col items-center mx-7 space-y-5">
+  <div class="flex flex-col items-center m-7 space-y-5">
     <?php
     while ($row = mysqli_fetch_array($jobs)) {
       $jobid = $row['id'];
@@ -114,12 +115,13 @@ if (isset($_POST['apply'])) {
       
       <form action='career.php' method='post' id='jobform$jobid' class='flex hidden flex-col space-y-3 mt-7 w-full max-w-5xl' action='post'>
       <input type='text' name='jobid' value='$jobid' class='hidden'>
+      <input type='text' name='position' value='$position' class='hidden'>
       <label>Full Name</label>
-      <input name='name' class='p-3 rounded-lg' type='text' />
+      <input name='name' class='p-3 rounded-lg' type='text' required/>
       <label>Year Passout</label>
-      <input name='passout' class='p-3 rounded-lg' type='Number' />
+      <input name='passout' class='p-3 rounded-lg' type='Number' required/>
       <label>Resume Link</label>
-      <input name='resume' class='p-3 rounded-lg' type='text' />
+      <input name='resume' class='p-3 rounded-lg' type='text' required/>
       <div class='space-x-4'>
         <input type='submit' name='apply' class='bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12' />
         <button type='button' onclick=\"toggleApplyJob('jobform$jobid')\" class='bg-red-500 text-white py-2 px-4 rounded-xl self-start my-12' >Cancel</button>

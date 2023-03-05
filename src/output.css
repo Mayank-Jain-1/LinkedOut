@@ -541,6 +541,10 @@ video {
   float: right;
 }
 
+.m-7 {
+  margin: 1.75rem;
+}
+
 .mx-7 {
   margin-left: 1.75rem;
   margin-right: 1.75rem;

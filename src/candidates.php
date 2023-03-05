@@ -17,9 +17,7 @@ function getCandidates()
 
     $sql = "SELECT * FROM `linkedout`.`candidates`";
     $candidates = mysqli_query($conn, $sql);
-
   } catch (Exception $err) {
-
   } finally {
     $conn->close();
   }
@@ -82,31 +80,31 @@ if (isset($_POST['logout'])) {
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
     <div class="p-5 md:p-7 w-full">
-        <h1 class="text-blue-500 text-4xl font-semibold">List of Applications</h1>
-        <table class="w-full my-10 border-2 border-neutral-400 ">
-          <tr>
-            <th class=" px-6 bg-primary text-white border-2 py-3">#</th>
-            <th class=" w-3/12 bg-primary text-white border-2 p-3">Name</th>
-            <th class=" w-5/12 bg-primary text-white border-2 p-3">Position</th>
-            <th class=" w-2/12 bg-primary text-white border-2 p-3">Year Passout</th>
-            <th class=" w-2/12 bg-primary text-white border-2 p-3">Resume</th>
-          </tr>
-          <?php
-          while ($row = mysqli_fetch_array($candidates)) {
-            $name = $row['name'];
-            $position = $row['position'];
-            $passout = $row['passout'];
-            $resume = $row['resume'];
-            echo "<tr class='border-b-2 border-neutral-400'>
+      <h1 class="text-blue-500 text-4xl font-semibold">List of Applications</h1>
+      <table class="w-full my-10 border-2 border-neutral-400 ">
+        <tr>
+          <th class=" px-6 bg-primary text-white border-2 py-3">#</th>
+          <th class=" w-3/12 bg-primary text-white border-2 p-3">Name</th>
+          <th class=" w-5/12 bg-primary text-white border-2 p-3">Position</th>
+          <th class=" w-2/12 bg-primary text-white border-2 p-3">Year Passout</th>
+          <th class=" w-2/12 bg-primary text-white border-2 p-3">Resume</th>
+        </tr>
+        <?php
+        while ($row = mysqli_fetch_array($candidates)) {
+          $name = $row['name'];
+          $position = $row['position'];
+          $passout = $row['passout'];
+          $resume = $row['resume'];
+          echo "<tr class='border-b-2 border-neutral-400'>
               <td class='text-lg py-3 px-5 font-semibold'></td>
               <td class='py-3 px-5'>$name</td=>
               <td class='py-3 px-5'>$position</td>
               <td class='py-3 px-5'>$passout</td>
-              <td class='py-3 px-5 text-blue-500'> <a href='$resume'>Link</a></td>
+              <td class='py-3 px-5 text-blue-500'> <a href='$resume' target='_blank'>Link</a></td>
             </tr>";
-          }
-          ?>
-        </table>
+        }
+        ?>
+      </table>
     </div>
   </div>
 </body>
