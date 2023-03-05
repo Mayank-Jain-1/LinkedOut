@@ -26,15 +26,46 @@ function getJobs()
   }
 }
 
+function applyJob()
+{
+  try {
+    $server = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "linkedout";
+
+    $conn = mysqli_connect($server, $username, $password, $database);
+
+    if ($conn->connect_error) {
+      die("Connection Failed: " . $conn->connect_error);
+    }
+
+    $jobid = $_POST['jobid'];
+    $name = $_POST['name'];
+    $passout = $_POST['passout'];
+    $resume = $_POST['resume'];
+    $sql = "INSERT INTO `linkedout`.`candidates` (`job id`, `name`, `resume`, `passout`) VALUES ('$jobid', '$name', '$resume', $passout);";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+      echo "<script>alert('Applied for the job successfully')</script>";
+    } else {
+      echo "<script>alert('Couldnt apply for the job check the fields or try later.')</script>";
+    }
+  } catch (Exception $err) {
+    return;
+  } finally {
+    $conn->close();
+  }
+}
+
 $jobs;
 getJobs();
 
-// $row = mysqli_fetch_array($jobs);
-// $jobid = $row['id'];
-// $companyName = $row['company name'];
-// $position = $row['position'];
-// $description = $row['description'];
-// $ctc = $row['ctc'];
+if (isset($_POST['apply'])) {
+  applyJob();
+}
 
 ?>
 
@@ -64,8 +95,6 @@ getJobs();
 
   <div class="flex flex-col items-center mx-7 space-y-5">
     <?php
-    $row = mysqli_fetch_array($jobs);
-    $row = mysqli_fetch_array($jobs);
     while ($row = mysqli_fetch_array($jobs)) {
       $jobid = $row['id'];
       $companyName = $row['company name'];
@@ -83,24 +112,24 @@ getJobs();
         w-20 p-3 rounded-xl' >Apply</button>
       </div>
       
-      <form method='post' id='jobform$jobid' class='flex flex-col space-y-3 mt-7 w-full max-w-5xl' action='post'>
+      <form action='career.php' method='post' id='jobform$jobid' class='flex hidden flex-col space-y-3 mt-7 w-full max-w-5xl' action='post'>
       <input type='text' name='jobid' value='$jobid' class='hidden'>
       <label>Full Name</label>
       <input name='name' class='p-3 rounded-lg' type='text' />
       <label>Year Passout</label>
-      <input name='position' class='p-3 rounded-lg' type='Number' />
+      <input name='passout' class='p-3 rounded-lg' type='Number' />
       <label>Resume Link</label>
-      <input name='position' class='p-3 rounded-lg' type='text' />
+      <input name='resume' class='p-3 rounded-lg' type='text' />
       <div class='space-x-4'>
-        <input type='submit' id='postJob' name='postJob' class='bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12' />
-        <button type='button' onclick=\"toggleApplyJob('jobform$jobid')\" class='bg-red-500 text-white py-2 px-4 rounded-xl self-start my-12' >Reset</button>
+        <input type='submit' name='apply' class='bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12' />
+        <button type='button' onclick=\"toggleApplyJob('jobform$jobid')\" class='bg-red-500 text-white py-2 px-4 rounded-xl self-start my-12' >Cancel</button>
       </div>
     </form>
 
       ";
     }
     ?>
-    
+
     <!-- <form method='post' id='jobform$jobid' class='flex flex-col space-y-3 mt-7 w-full max-w-5xl' action='post'>
       <input type='text' name='jobid' value='$jobid' class="hidden">
       <label>Full Name</label>
@@ -114,7 +143,7 @@ getJobs();
         <button type='button' onclick='toggleApplyJob('jobform$jobid')' class='bg-red-500 text-white py-2 px-4 rounded-xl self-start my-12' >Reset</button>
       </div>
     </form> -->
-    
+
   </div>
 
 
