@@ -52,7 +52,8 @@ if (isset($_POST['logout'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="output.css" />
-  <title>Document</title>
+  <link rel="icon" href="./Images/logo.png" type="image/x-icon">
+  <title>Admin | Candidates</title>
 </head>
 
 <body class="bg-faded">
@@ -78,7 +79,7 @@ if (isset($_POST['logout'])) {
     <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
       <a href="jobs.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Jobs</a>
       <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Candidates Apllied</a>
-      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Contact</a>
+      <a href='career.php' class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Careers Page</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
     <div class="p-3 md:p-7 w-full">

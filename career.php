@@ -79,7 +79,8 @@ if (isset($_POST['apply'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="output.css" />
-  <title>Document</title>
+  <link rel="icon" href="./Images/logo.png" type="image/x-icon">
+  <title>Careers</title>
 </head>
 
 <body class="bg-faded">
@@ -88,13 +89,13 @@ if (isset($_POST['apply'])) {
     <p class="text-2xl font-semibold text-center w-full">
       Careers
     </p>
-    <a href="login.php" class="bg-white text-primary p-2 cursor-pointer w-40 text-center">Admin Login</a>
+    <a href="jobs.php" class="bg-white text-primary p-2 cursor-pointer w-40 text-center">Admin Login</a>
     </ul>
   </nav>
 
   <h1 class="text-4xl text-center font-semibold py-7 text-primary"> Find your dream job.</h1>
 
-  <div class="flex flex-col items-center m-7 space-y-5">
+  <div class="flex flex-col items-center m-4 md:m-7 space-y-5">
     <?php
     while ($row = mysqli_fetch_array($jobs)) {
       $jobid = $row['id'];
@@ -108,7 +109,7 @@ if (isset($_POST['apply'])) {
         <h5 class='text-lg font-semibold'>$position</h5>
         <p class='pb-2'>$description</p>
         <h5 class='text-lg font-semibold '>CTC</h5>
-        <p class='pb-4'>₹ $ctc</p>
+        <p class='pb-4'>₹ $ctc Lpa</p>
         <button onclick=\"toggleApplyJob('jobform$jobid')\" type='submit' name='job$jobid' class='bg-blue-500 text-white
         w-20 p-3 rounded-xl' >Apply</button>
       </div>
@@ -132,19 +133,6 @@ if (isset($_POST['apply'])) {
     }
     ?>
 
-    <!-- <form method='post' id='jobform$jobid' class='flex flex-col space-y-3 mt-7 w-full max-w-5xl' action='post'>
-      <input type='text' name='jobid' value='$jobid' class="hidden">
-      <label>Full Name</label>
-      <input name='name' class='p-3 rounded-lg' type='text' />
-      <label>Year Passout</label>
-      <input name='position' class='p-3 rounded-lg' type='Number' />
-      <label>Resume Link</label>
-      <input name='position' class='p-3 rounded-lg' type='text' />
-      <div class='space-x-4'>
-        <input type='submit' id='postJob' name='postJob' class='bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12' />
-        <button type='button' onclick='toggleApplyJob('jobform$jobid')' class='bg-red-500 text-white py-2 px-4 rounded-xl self-start my-12' >Reset</button>
-      </div>
-    </form> -->
 
   </div>
 

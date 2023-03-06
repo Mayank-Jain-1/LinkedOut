@@ -36,7 +36,7 @@ function register()
     $searchSql = "Select name from `linkedout`.`users` where email = '$email'";
     $result = mysqli_query($conn, $searchSql);
     if (mysqli_num_rows($result) == 1) {
-      $message = "<p class='text-blue-400'>Account with this email exists!!</p>";
+      $message = "<p class='text-blue-400'>Account with this email exists already try logging in!!</p>";
       return;
     }
     $sql = "INSERT INTO `linkedout`.`users` ( `email`, `password`, `phone`, `name`) VALUES ('$email', '$password', $phone, '$name');";
@@ -70,7 +70,8 @@ if (isset($_POST['submit'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="output.css" />
-  <title>Document</title>
+  <link rel="icon" href="./Images/logo.png" type="image/x-icon">
+  <title>Admin | Register</title>
 </head>
 
 <body>
@@ -79,7 +80,7 @@ if (isset($_POST['submit'])) {
 
   <div class="flex justify-center items-center py-16 px-5 md:px-10">
     <div class="flex w-full max-w-[800px] bg-white rounded-2xl overflow-hidden relative">
-      <img src="./Images/buildings.png" alt="" class="w-1/3 hidden sm:block " />
+      <img src="./Images/buildings.png" alt="" class="w-1/3 hidden sm:block object-cover" />
 
       <form action='register.php' method="post" class="flex flex-col justify-center w-full py-16 px-10 md:px-16">
         <h1 class="text-5xl text-primary font-semibold mb-6">Welcome</h1>

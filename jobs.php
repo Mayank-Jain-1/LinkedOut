@@ -66,7 +66,6 @@ function postJob()
     if (str_contains($err, 'unq_job')) {
       $message = "<p class='text-red-600'>Same Job post already exist. Please check in the available jobs.</p>";
     } else {
-      echo $err;
       $message = "<p class='text-red-600'>Fill all fields correctly. Or try again later</p>";
     }
     return;
@@ -107,7 +106,8 @@ if (isset($_POST['postJob']))
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="output.css" />
-  <title>Document</title>
+  <link rel="icon" href="./Images/logo.png" type="image/x-icon">
+  <title>Admin | Jobs</title>
 </head>
 
 <body class="bg-faded">
@@ -133,7 +133,7 @@ if (isset($_POST['postJob']))
     <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
       <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Jobs</a>
       <a href="candidates.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Candidates Applied</a>
-      <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Contact</a>
+      <a href="career.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Careers Page</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
     <div class="p-5 md:p-7 w-full">
