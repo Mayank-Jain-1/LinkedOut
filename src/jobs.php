@@ -114,14 +114,16 @@ if (isset($_POST['postJob']))
   <nav class="w-full text-white flex items-center justify-between h-20 bg-primary px-5">
     <h1 class="text-2xl font-semibold">Admin</h1>
     <ul class="flex items-center space-x-6 float-right justify-between">
-      <p class="text-lg"><?php
-                          echo $_SESSION['phone'];
-                          ?>
-      </p>
-      <p class="text-lg"><?php
-                          echo $_SESSION['name'];
-                          ?>
-      </p>
+      <div class="flex flex-col md:flex-row md:space-x-5">
+        <p class="text-lg"><?php
+                            echo $_SESSION['phone'];
+                            ?>
+        </p>
+        <p class="text-lg"><?php
+                            echo $_SESSION['name'];
+                            ?>
+        </p>
+      </div>
       <form action="jobs.php" method="post">
         <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2 cursor-pointer"></input>
       </form>
@@ -146,7 +148,7 @@ if (isset($_POST['postJob']))
           <input name="position" class="p-3 rounded-lg" type="text" />
           <label>Job Description</label>
           <textarea class="p-3 rounded-lg" class="p-3 rounded-lg" name="description" cols="30" rows="10"></textarea>
-          <label>CTC</label>
+          <label>CTC (Lpa)</label>
           <input name="ctc" class="p-3 rounded-lg" type="number" />
           <?php
           echo $message;
@@ -156,7 +158,7 @@ if (isset($_POST['postJob']))
 
         <table class="w-full my-10 border-2 border-neutral-400 ">
           <tr>
-            <th class=" px-6 bg-primary text-white border-2 py-3">#</th>
+            <th class="  bg-primary text-white border-2 py-3">#</th>
             <th class=" w-2/5 bg-primary text-white border-2 p-3">Company Name</th>
             <th class=" w-2/5 bg-primary text-white border-2 p-3">Position</th>
             <th class=" w-1/5 bg-primary text-white border-2 p-3">CTC</th>
@@ -168,9 +170,9 @@ if (isset($_POST['postJob']))
             $ctc = $row['ctc'];
             echo "<tr class='border-b-2 border-neutral-400'>
               <td class='text-lg py-3 px-5 font-semibold'></td>
-              <td class='py-3 px-5'>$companyName</td=>
-              <td class='py-3 px-5'>$position</td>
-              <td class='py-3 px-5'>₹ $ctc</td>
+              <td class='py-3'>$companyName</td=>
+              <td class='py-3'>$position</td>
+              <td class='py-3'>$ctc Lpa</td>
             </tr>";
           }
           ?>

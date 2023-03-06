@@ -59,14 +59,16 @@ if (isset($_POST['logout'])) {
   <nav class="w-full text-white flex items-center justify-between h-20 bg-primary px-5">
     <h1 class="text-2xl font-semibold">Admin</h1>
     <ul class="flex items-center space-x-6 float-right justify-between">
-      <p class="text-lg"><?php
-                          echo $_SESSION['phone'];
-                          ?>
-      </p>
-      <p class="text-lg"><?php
-                          echo $_SESSION['name'];
-                          ?>
-      </p>
+      <div class="flex flex-col md:flex-row md:space-x-5">
+        <p class="text-lg"><?php
+                            echo $_SESSION['phone'];
+                            ?>
+        </p>
+        <p class="text-lg"><?php
+                            echo $_SESSION['name'];
+                            ?>
+        </p>
+      </div>
       <form action="jobs.php" method="post">
         <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2 cursor-pointer"></input>
       </form>
@@ -79,15 +81,15 @@ if (isset($_POST['logout'])) {
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Contact</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
-    <div class="p-5 md:p-7 w-full">
+    <div class="p-3 md:p-7 w-full">
       <h1 class="text-blue-500 text-4xl font-semibold">List of Applications</h1>
       <table class="w-full my-10 border-2 border-neutral-400 ">
         <tr>
-          <th class=" px-6 bg-primary text-white border-2 py-3">#</th>
-          <th class=" w-3/12 bg-primary text-white border-2 p-3">Name</th>
-          <th class=" w-5/12 bg-primary text-white border-2 p-3">Position</th>
-          <th class=" w-2/12 bg-primary text-white border-2 p-3">Year Passout</th>
-          <th class=" w-2/12 bg-primary text-white border-2 p-3">Resume</th>
+          <th class="px-2 md:px-6 bg-primary text-white border-2 py-3">#</th>
+          <th class=" w-3/12 bg-primary text-white border-2 py-3 px-2 md:px-3">Name</th>
+          <th class=" w-5/12 bg-primary text-white border-2 py-3 px-2 md:px-3">Position</th>
+          <th class=" w-2/12 bg-primary text-white border-2 py-3 px-2 md:px-3">Year Passout</th>
+          <th class=" w-2/12 bg-primary text-white border-2 py-3 px-2 md:px-3">Resume</th>
         </tr>
         <?php
         while ($row = mysqli_fetch_array($candidates)) {
@@ -96,11 +98,11 @@ if (isset($_POST['logout'])) {
           $passout = $row['passout'];
           $resume = $row['resume'];
           echo "<tr class='border-b-2 border-neutral-400'>
-              <td class='text-lg py-3 px-5 font-semibold'></td>
-              <td class='py-3 px-5'>$name</td=>
-              <td class='py-3 px-5'>$position</td>
-              <td class='py-3 px-5'>$passout</td>
-              <td class='py-3 px-5 text-blue-500'> <a href='$resume' target='_blank'>Link</a></td>
+              <td class='text-lg py-3  font-semibold pl-3'></td>
+              <td class='py-3 '>$name</td=>
+              <td class='py-3 '>$position</td>
+              <td class='py-3 '>$passout</td>
+              <td class='py-3  text-blue-500'> <a href='$resume' target='_blank'>Link</a></td>
             </tr>";
         }
         ?>
