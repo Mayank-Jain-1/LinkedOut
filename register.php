@@ -51,7 +51,7 @@ function register()
   } catch (Exception $err) {
     $message = "<p class='text-red-600'>There is some error, check your data or try later.</p>";
   } finally {
-    $conn->close();
+    if(isset($conn)) $conn->close();
   }
 }
 

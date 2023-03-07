@@ -19,7 +19,7 @@ function getCandidates()
     $candidates = mysqli_query($conn, $sql);
   } catch (Exception $err) {
   } finally {
-    $conn->close();
+    if(isset($conn)) $conn->close();
   }
 }
 
