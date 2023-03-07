@@ -22,7 +22,7 @@ function getJobs()
     // }
   } catch (Exception $err) {
   } finally {
-    $conn->close();
+    if($conn) $conn->close();
   }
 }
 
