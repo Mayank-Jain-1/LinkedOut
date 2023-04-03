@@ -88,10 +88,9 @@ if (!isset($_SESSION['name'])) {
 
 
 if (isset($_POST['logout'])) {
-  echo "clicked Logout";
+  header("location: index.php");
   session_unset();
   session_destroy();
-  header("location: index.php");
 }
 
 if (isset($_POST['postJob']))
