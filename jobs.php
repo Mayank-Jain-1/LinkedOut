@@ -4,10 +4,10 @@ function getJobs()
 {
   try {
     global $jobs;
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "linkedout";
+    $server = "sql12.freesqldatabase.com";
+    $username = "sql12615907";
+    $password = "TUyAGLn1vc";
+    $database = "sql12615907";
 
     $conn = mysqli_connect($server, $username, $password, $database);
 
@@ -15,14 +15,15 @@ function getJobs()
       die("Connection Failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM `linkedout`.`jobs`";
+    $sql = "SELECT * FROM `sql12615907`.`jobs`";
     $jobs = mysqli_query($conn, $sql);
     // while($row = mysqli_fetch_array($jobs)){
     //   echo print_r($row["CTC"]);
     // }
   } catch (Exception $err) {
   } finally {
-    if(isset($conn)) $conn->close();
+    if (isset($conn))
+      $conn->close();
   }
 }
 
@@ -30,10 +31,10 @@ function postJob()
 {
   try {
     global $message;
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "linkedout";
+    $server = "sql12.freesqldatabase.com";
+    $username = "sql12615907";
+    $password = "TUyAGLn1vc";
+    $database = "sql12615907";
 
     $conn = mysqli_connect($server, $username, $password, $database);
 
@@ -51,7 +52,7 @@ function postJob()
       return;
     }
 
-    $sql = "INSERT INTO `linkedout`.`jobs` (`company name`, `position`, `description`, `ctc`) VALUES ( '$name', '$position', '$description', $ctc);";
+    $sql = "INSERT INTO `sql12615907`.`jobs` (`company name`, `position`, `description`, `ctc`) VALUES ( '$name', '$position', '$description', $ctc);";
 
     $result = mysqli_query($conn, $sql);
 
@@ -81,7 +82,7 @@ $jobs;
 $message = "<p class='text-faded'>.</p>";
 
 if (!isset($_SESSION['name'])) {
-  header("location: login.php");
+  header("location: index.php");
 }
 
 
@@ -90,7 +91,7 @@ if (isset($_POST['logout'])) {
   echo "clicked Logout";
   session_unset();
   session_destroy();
-  header("location: login.php");
+  header("location: index.php");
 }
 
 if (isset($_POST['postJob']))
@@ -115,25 +116,30 @@ if (isset($_POST['postJob']))
     <h1 class="text-2xl font-semibold">Admin</h1>
     <ul class="flex items-center space-x-6 float-right justify-between">
       <div class="flex flex-col md:flex-row md:space-x-5">
-        <p class="text-lg"><?php
-                            echo $_SESSION['phone'];
-                            ?>
+        <p class="text-lg">
+          <?php
+          echo $_SESSION['phone'];
+          ?>
         </p>
-        <p class="text-lg"><?php
-                            echo $_SESSION['name'];
-                            ?>
+        <p class="text-lg">
+          <?php
+          echo $_SESSION['name'];
+          ?>
         </p>
       </div>
       <form action="jobs.php" method="post">
-        <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2 cursor-pointer"></input>
+        <input id="logout" value="Logout" type="submit" name="logout" value="logout"
+          class="bg-white text-primary p-2 cursor-pointer"></input>
       </form>
     </ul>
   </nav>
   <div class="flex flex-col md:flex-row">
     <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
       <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Jobs</a>
-      <a href="candidates.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Candidates Applied</a>
-      <a href="career.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Careers Page</a>
+      <a href="candidates.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Candidates
+        Applied</a>
+      <a href="career.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Careers
+        Page</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
     <div class="p-5 md:p-7 w-full">
@@ -153,7 +159,8 @@ if (isset($_POST['postJob']))
           <?php
           echo $message;
           ?>
-          <input type="submit" id='postJob' name='postJob' class="bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12" />
+          <input type="submit" id='postJob' name='postJob'
+            class="bg-blue-400 text-white py-2 px-4 rounded-xl self-start my-12 cursor-pointer" />
         </form>
 
         <table class="w-full my-10 border-2 border-neutral-400 ">

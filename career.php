@@ -4,10 +4,10 @@ function getJobs()
 {
   try {
     global $jobs;
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "linkedout";
+    $server = "sql12.freesqldatabase.com";
+    $username = "sql12615907";
+    $password = "TUyAGLn1vc";
+    $database = "sql12615907";
 
     $conn = mysqli_connect($server, $username, $password, $database);
 
@@ -15,24 +15,25 @@ function getJobs()
       die("Connection Failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM `linkedout`.`jobs`";
+    $sql = "SELECT * FROM `sql12615907`.`jobs`";
     $jobs = mysqli_query($conn, $sql);
     // while($row = mysqli_fetch_array($jobs)){
     //   echo print_r($row["CTC"]);
     // }
   } catch (Exception $err) {
   } finally {
-    if(isset($conn)) $conn->close();
+    if (isset($conn))
+      $conn->close();
   }
 }
 
 function applyJob()
 {
   try {
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "linkedout";
+    $server = "sql12.freesqldatabase.com";
+    $username = "sql12615907";
+    $password = "TUyAGLn1vc";
+    $database = "sql12615907";
 
     $conn = mysqli_connect($server, $username, $password, $database);
 
@@ -45,7 +46,7 @@ function applyJob()
     $position = $_POST['position'];
     $passout = $_POST['passout'];
     $resume = $_POST['resume'];
-    $sql = "INSERT INTO `linkedout`.`candidates` (`job id`, `name`, `resume`, `passout`,`position`) VALUES ('$jobid', '$name', '$resume', $passout,'$position');";
+    $sql = "INSERT INTO `sql12615907`.`candidates` (`job id`, `name`, `resume`, `passout`,`position`) VALUES ('$jobid', '$name', '$resume', $passout,'$position');";
 
     $result = mysqli_query($conn, $sql);
 
@@ -63,7 +64,6 @@ function applyJob()
 
 $jobs;
 getJobs();
-
 if (isset($_POST['apply'])) {
   applyJob();
 }

@@ -4,10 +4,10 @@ function getCandidates()
 {
   try {
     global $candidates;
-    $server = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "linkedout";
+    $server = "sql12.freesqldatabase.com";
+    $username = "sql12615907";
+    $password = "TUyAGLn1vc";
+    $database = "sql12615907";
 
     $conn = mysqli_connect($server, $username, $password, $database);
 
@@ -15,11 +15,12 @@ function getCandidates()
       die("Connection Failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM `linkedout`.`candidates`";
+    $sql = "SELECT * FROM `sql12615907`.`candidates`";
     $candidates = mysqli_query($conn, $sql);
   } catch (Exception $err) {
   } finally {
-    if(isset($conn)) $conn->close();
+    if (isset($conn))
+      $conn->close();
   }
 }
 
@@ -29,7 +30,7 @@ getCandidates();
 $candidates;
 
 if (!isset($_SESSION['name'])) {
-  header("location: login.php");
+  header("location: index.php");
 }
 
 
@@ -38,7 +39,7 @@ if (isset($_POST['logout'])) {
   echo "clicked Logout";
   session_unset();
   session_destroy();
-  header("location: login.php");
+  header("location: index.php");
 }
 
 ?>
@@ -61,17 +62,20 @@ if (isset($_POST['logout'])) {
     <h1 class="text-2xl font-semibold">Admin</h1>
     <ul class="flex items-center space-x-6 float-right justify-between">
       <div class="flex flex-col md:flex-row md:space-x-5">
-        <p class="text-lg"><?php
-                            echo $_SESSION['phone'];
-                            ?>
+        <p class="text-lg">
+          <?php
+          echo $_SESSION['phone'];
+          ?>
         </p>
-        <p class="text-lg"><?php
-                            echo $_SESSION['name'];
-                            ?>
+        <p class="text-lg">
+          <?php
+          echo $_SESSION['name'];
+          ?>
         </p>
       </div>
       <form action="jobs.php" method="post">
-        <input id="logout" value="Logout" type="submit" name="logout" value="logout" class="bg-white text-primary p-2 cursor-pointer"></input>
+        <input id="logout" value="Logout" type="submit" name="logout" value="logout"
+          class="bg-white text-primary p-2 cursor-pointer"></input>
       </form>
     </ul>
   </nav>
@@ -79,7 +83,8 @@ if (isset($_POST['logout'])) {
     <ul class="md:min-h-screen h-max md:h-auto bg-secondary w-full md:w-60 flex flex-col">
       <a href="jobs.php" class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Jobs</a>
       <a class="py-3 px-5 border-y inline-block md:block text-white bg-primary">Candidates Apllied</a>
-      <a href='career.php' class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Careers Page</a>
+      <a href='career.php' class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">Careers
+        Page</a>
       <a class="py-3 px-5 border-y inline-block md:block cursor-pointer hover:bg-faded">About</a>
     </ul>
     <div class="p-3 md:p-7 w-full">
